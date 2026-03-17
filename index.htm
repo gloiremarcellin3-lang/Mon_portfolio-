@@ -1,0 +1,1300 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gloire Mbamba · Géomaticien</title>
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0b1630;
+            --surface: #112247;
+            --surface-soft: #162c59;
+            --text: #e9f0ff;
+            --text-soft: #b8c6e8;
+            --muted: #90a3cf;
+            --line: #2a3f6c;
+            --accent: #1f6f82;
+            --accent-soft: #2f8ea3;
+            --accent-2: #3b7b52;
+            --overlay: rgba(4, 10, 24, 0.72);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% -10%, #1a2a52 0%, transparent 45%),
+                        radial-gradient(circle at 90% 0%, #15284b 0%, transparent 38%),
+                        var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(31, 111, 130, 0.04) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(31, 111, 130, 0.04) 1px, transparent 1px);
+            background-size: 34px 34px;
+            z-index: -1;
+        }
+
+        /* Menu exactement comme dans l'image */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(11, 22, 48, 0.9);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line);
+            z-index: 1000;
+            padding: 1.2rem 0;
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-container a {
+            text-decoration: none;
+            color: var(--text-soft);
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-container a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--accent);
+            transition: width 0.2s;
+        }
+
+        .nav-container a:hover::after {
+            width: 100%;
+        }
+
+        .nav-container a:hover {
+            color: var(--text);
+        }
+
+        /* Hamburger menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2.5px;
+            background: var(--text);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-label {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--muted);
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+        }
+
+        /* Hero avec texte défilant */
+        .hero {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 1.2rem;
+            line-height: 1.1;
+        }
+
+        /* Conteneur du texte animé */
+        .animated-roles {
+            height: 3.5rem;
+            margin: 1rem auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--text-soft);
+        }
+
+        #changing-word {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 500;
+            margin-left: 8px;
+            padding: 0 4px;
+            border-right: 2px solid var(--accent);
+            animation: blinkCursor 0.8s infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { border-color: var(--accent); }
+            50% { border-color: transparent; }
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            color: var(--text-soft);
+            margin: 2rem 0 3rem;
+            font-size: 1rem;
+        }
+
+        .scroll-hint {
+            margin-top: 4rem;
+            color: var(--muted);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-8px);}
+            60% {transform: translateY(-4px);}
+        }
+
+        /* Profil */
+        .profil-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .profil-image {
+            flex: 1 1 280px;
+            text-align: center;
+        }
+
+        .profil-image img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--surface);
+            box-shadow: 0 20px 35px -8px rgba(30, 85, 98, 0.22);
+        }
+
+        .profil-texte {
+            flex: 2 1 400px;
+        }
+
+        .profil-texte .accroche {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 1.8rem;
+            line-height: 1.6;
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .profil-infos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .profil-infos div {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-soft);
+        }
+
+        .profil-infos i {
+            width: 20px;
+            color: var(--accent);
+        }
+
+        /* Compétences en tags */
+        .competences-section {
+            margin-top: 3rem;
+        }
+
+        .competences-category {
+            margin-bottom: 2rem;
+        }
+
+        .competences-category h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-soft);
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .tag {
+            background: var(--surface-soft);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--text);
+            border: 1px solid var(--line);
+        }
+
+        /* À propos */
+        .about-text {
+            max-width: 800px;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        .values-box {
+            background: linear-gradient(140deg, #13274f 0%, #0f2246 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 2.5rem 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .hobbies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .hobby {
+            background: var(--surface);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            border: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Portfolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-card {
+            background: #112247;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 14px 32px rgba(31, 111, 130, 0.18);
+        }
+
+        .portfolio-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #245e70, #3b7b52);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .portfolio-card-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+
+        .portfolio-card-desc {
+            color: var(--text-soft);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .portfolio-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .portfolio-tag {
+            background: var(--surface);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            border: 1px solid var(--line);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--overlay);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-soft);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+            padding-right: 2rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .modal-header p {
+            color: var(--text-soft);
+            font-size: 0.95rem;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+
+        .modal-section p {
+            color: var(--text-soft);
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .modal-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-section li {
+            color: var(--text-soft);
+            margin-bottom: 0.6rem;
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+        }
+
+        .modal-section li:before {
+            content: "▪";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 0.4rem;
+        }
+
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .modal-tag {
+            background: var(--surface-soft);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            border: 1px solid var(--line);
+        }
+
+        .modal-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .modal-link:hover {
+            filter: brightness(0.95);
+        }
+
+        /* Section CV - ultra complète */
+        .cv-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .cv-part h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text);
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 0.8rem;
+        }
+
+        .exp-item {
+            margin-bottom: 2.5rem;
+        }
+
+        .exp-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.8rem;
+        }
+
+        .exp-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .exp-company {
+            color: var(--text-soft);
+            font-weight: 500;
+        }
+
+        .exp-date {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .exp-desc {
+            list-style: none;
+            margin-top: 0.8rem;
+        }
+
+        .exp-desc li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            color: var(--text-soft);
+            font-size: 0.95rem;
+        }
+
+        .exp-desc i {
+            font-size: 0.5rem;
+            margin-top: 0.6rem;
+            color: var(--accent);
+        }
+
+        .formation-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            background: #12254c;
+            border-radius: 12px;
+        }
+
+        .formation-diplome {
+            font-weight: 600;
+        }
+
+        .formation-ecole {
+            color: var(--text-soft);
+        }
+
+        .btn-cv {
+            display: inline-block;
+            margin-top: 2rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+            align-self: flex-start;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-cv:hover {
+            filter: brightness(0.95);
+        }
+
+        /* Contact */
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            flex: 1 1 300px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--text-soft);
+            font-size: 1.8rem;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .contact-form {
+            flex: 2 1 400px;
+            background: linear-gradient(160deg, #132a57 0%, #102347 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--line);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            background: var(--surface);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(31, 111, 130, 0.12);
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--muted);
+            border-top: 1px solid var(--line);
+        }
+
+        @media (max-width: 800px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-container {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: rgba(11, 22, 48, 0.98);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--line);
+                z-index: 999;
+            }
+
+            .nav-container.open {
+                display: flex;
+            }
+
+            .nav-container a {
+                padding: 1rem 2rem;
+                border-bottom: 1px solid #1f3560;
+            }
+
+            .nav-container a::after {
+                display: none;
+            }
+
+            .animated-roles {
+                font-size: 1.1rem;
+                flex-wrap: wrap;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu exact comme demandé -->
+    <nav class="navbar">
+        <div style="max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 2rem;">
+            <div class="nav-container">
+                <a href="#accueil">ACCUEIL</a>
+                <a href="#profil">PROFIL</a>
+                <a href="#apropos">À PROPOS</a>
+                <a href="#portfolio">PORTFOLIO</a>
+                <a href="#cv">CV</a>
+                <a href="#contact">CONTACT</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ACCUEIL avec texte défilant -->
+    <section id="accueil" class="hero">
+        <h1>GLOIRE MBAMBA MOUANDA</h1>
+        
+        <!-- Texte animé -->
+        <div class="animated-roles">
+            <span>je travaille comme</span>
+            <span id="changing-word">Géomaticien</span>
+        </div>
+
+        <div class="location">
+            <span><i class="fas fa-map-pin"></i> Sartrouville (78500)</span>
+            <span><i class="fas fa-car"></i> Permis B</span>
+        </div>
+
+        <div class="scroll-hint">
+            <span>↓ découvrir mon parcours</span>
+            <i class="fas fa-arrow-down"></i>
+        </div>
+    </section>
+
+    <!-- PROFIL -->
+    <section id="profil">
+        <div class="section-label">PROFIL</div>
+        <div class="profil-container">
+            <div class="profil-image">
+                <img src="images/photo.jpg" alt="Photo de profil de Gloire Mbamba">
+            </div>
+            <div class="profil-texte">
+                <div class="accroche">
+                    Futur diplômé d'un Master 2 en Géomatique appliquée à l'urbanisme et à la gestion des risques, je transforme les données spatiales en solutions concrètes et innovantes.
+                </div>
+                <p style="color: #404040;">Curieux, rigoureux et créatif, je cherche à rejoindre une équipe stimulante où je pourrai relever de nouveaux défis, apprendre en continu et contribuer efficacement à des projets à fort impact territorial. <strong>Disponible dès septembre 2026.</strong></p>
+                
+                <div class="profil-infos">
+                    <div><i class="fas fa-envelope"></i> gloiremarcellin3@gmail.com</div>
+                    <div><i class="fas fa-phone"></i> 06 24 61 02 72</div>
+                    <div><i class="fab fa-linkedin"></i> /in/gloire-mbamba-1988b32a5</div>
+                </div>
+
+                <!-- Compétences intégrées dans Profil -->
+                <div class="competences-section">
+                    <div class="competences-category">
+                        <h4>SIG & analyse</h4>
+                        <div class="tags">
+                            <span class="tag">ArcGIS</span>
+                            <span class="tag">QGIS</span>
+                            <span class="tag">ENVI</span>
+                            <span class="tag">Google Earth Pro</span>
+                            <span class="tag">FME</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">RStudio</span>
+                        </div>
+                    </div>
+                    <div class="competences-category">
+                        <h4>Développement</h4>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">HTML/CSS</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Visual Studio</span>
+                            <span class="tag">Spyder</span>
+                            <span class="tag">IA Générative</span>
+                        </div>
+                    </div>
+                    <div class="competences-category">
+                        <h4>Conception & bureautique</h4>
+                        <div class="tags">
+                            <span class="tag">SketchUp</span>
+                            <span class="tag">Revit</span>
+                            <span class="tag">AutoCAD</span>
+                            <span class="tag">Pack Office</span>
+                            <span class="tag">Adobe</span>
+                            <span class="tag">Inkscape</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section id="apropos">
+        <div class="section-label">À PROPOS</div>
+        <div class="about-text">
+            <p>Passionné par la géomatique et l'urbanisme, j'ai construit mon parcours autour de la donnée spatiale et de son application aux territoires. Mon approche mêle rigueur technique et créativité pour proposer des diagnostics et des solutions adaptées aux enjeux contemporains.</p>
+            
+            <div class="values-box">
+                <p style="font-style: italic; margin-bottom: 1rem;">"Transformer les données spatiales en solutions concrètes et innovantes pour un aménagement durable des territoires."</p>
+                <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                    <span>• Capacité rédactionnelle</span>
+                    <span>• Négociation foncière</span>
+                    <span>• Travail en équipe</span>
+                </div>
+            </div>
+
+            <h4 style="margin-bottom: 1rem;">Centres d'intérêt</h4>
+            <div class="hobbies">
+                <span class="hobby"><i class="fas fa-newspaper"></i> Revue scientifique (transition écologique, SIG 2024-2025)</span>
+                <span class="hobby"><i class="fas fa-futbol"></i> Football, cyclisme, course à pied</span>
+                <span class="hobby"><i class="fas fa-plane"></i> Voyages (Europe, Afrique)</span>
+                <span class="hobby"><i class="fas fa-camera"></i> Photographie créative</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+        <div class="section-label">PORTFOLIO</div>
+        <div class="portfolio-grid">
+            <!-- Carte 1 : ClimatQuartier -->
+            <div class="portfolio-card" onclick="openModal('climatquartier')" style="cursor: pointer;">
+                <div class="portfolio-card-image">🌍</div>
+                <div class="portfolio-card-content">
+                    <div class="portfolio-card-title">ClimatQuartier</div>
+                    <div class="portfolio-card-desc">Simulateur climatique interactif pour visualiser les impacts du changement climatique sur différents territoires.</div>
+                    <div class="portfolio-card-tags">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte 2 -->
+            <div class="portfolio-card">
+                <div class="portfolio-card-image"></div>
+                <div class="portfolio-card-content">
+                    <div class="portfolio-card-title"></div>
+                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-tags">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte 3 -->
+            <div class="portfolio-card">
+                <div class="portfolio-card-image"></div>
+                <div class="portfolio-card-content">
+                    <div class="portfolio-card-title"></div>
+                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-tags">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte 4 -->
+            <div class="portfolio-card">
+                <div class="portfolio-card-image"></div>
+                <div class="portfolio-card-content">
+                    <div class="portfolio-card-title"></div>
+                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-tags">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte 5 -->
+            <div class="portfolio-card">
+                <div class="portfolio-card-image"></div>
+                <div class="portfolio-card-content">
+                    <div class="portfolio-card-title"></div>
+                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-tags">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte 6 -->
+            <div class="portfolio-card">
+                <div class="portfolio-card-image"></div>
+                <div class="portfolio-card-content">
+                    <div class="portfolio-card-title"></div>
+                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-tags">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal ClimatQuartier -->
+    <div id="climatquartier-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('climatquartier')">✕</button>
+            
+            <div class="modal-header">
+                <h2>ClimatQuartier</h2>
+                <p>Simulateur de climat futur - Projet collectif de gestion de projet</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>À propos du projet</h3>
+                <p>ClimatQuartier est une application web interactive développée en groupe dans le cadre d'un cours de gestion de projet. Cette plateforme innovative permet de simuler et visualiser l'évolution du climat futur sur différents territoires français.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Fonctionnalités principales</h3>
+                <ul>
+                    <li>Simulation climatique multi-horizons temporels (2030, 2050, 2100)</li>
+                    <li>Paramètres d'adaptation urbaine ajustables (arbres, espaces verts, densité, perméabilité)</li>
+                    <li>Comparaison de 3 communes différentes (Cergy, Annecy, Saint-Malo)</li>
+                    <li>Visualisation cartographique interactive avec données en temps réel</li>
+                    <li>Scénarios climatiques modulés (Modéré SSP2-4.5, Extrême SSP5-8.5)</li>
+                    <li>Export des résultats en PDF</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Technologies utilisées</h3>
+                <div class="modal-tags">
+                    <span class="modal-tag">JavaScript</span>
+                    <span class="modal-tag">HTML/CSS</span>
+                    <span class="modal-tag">Cartographie</span>
+                    <span class="modal-tag">Données climatiques</span>
+                    <span class="modal-tag">Vercel</span>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>Mon rôle</h3>
+                <p>Contribution active au projet collectif : développement frontend, intégration des données climatiques, conception de l'interface utilisateur et gestion du versioning.</p>
+            </div>
+
+            <a href="https://climat-quartier.vercel.app/index.html" target="_blank" class="modal-link">Découvrir l'application →</a>
+        </div>
+    </div>
+
+    <!-- CV complet avec TOUTES les informations -->
+    <section id="cv">
+        <div class="section-label">CV</div>
+        <div class="cv-grid">
+            <!-- Expériences professionnelles -->
+            <div class="cv-part">
+                <h3><i class="fas fa-briefcase"></i> Expériences professionnelles</h3>
+                
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Apprenti Géomaticien</span>
+                        <span class="exp-company">HYDRE INGÉNIERIE</span>
+                        <span class="exp-date">2024 - en cours</span>
+                    </div>
+                    <ul class="exp-desc">
+                        <li><i class="fas fa-circle"></i> Automatisation de traitements SIG et développement d'une application cartographique interne</li>
+                        <li><i class="fas fa-circle"></i> Études d'implantation télécom (antennes, fibre, datacenters)</li>
+                        <li><i class="fas fa-circle"></i> Conduite d'études de faisabilité urbaine et analyse des contraintes de site</li>
+                        <li><i class="fas fa-circle"></i> Prospection foncière, SIG appliqués à l'urbanisme et aux télécoms</li>
+                        <li><i class="fas fa-circle"></i> Travail en lien avec des commerciaux</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Diagnostic Territorial</span>
+                        <span class="exp-company">CAUE DES YVELINES</span>
+                        <span class="exp-date">Octobre 2024</span>
+                    </div>
+                    <ul class="exp-desc">
+                        <li><i class="fas fa-circle"></i> Recherche de nouvelles opportunités foncières pour développer des projets immobiliers (friche de la gare de Houilles)</li>
+                        <li><i class="fas fa-circle"></i> Relevés : photographies, croquis, enregistrements sonores, comptages, relevés de distance</li>
+                        <li><i class="fas fa-circle"></i> Contact avec parties prenantes, habitants, commerçants</li>
+                        <li><i class="fas fa-circle"></i> Croisement des données avec INSEE, Institut Paris Région, revue de presse</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Stage d'initiation à l'urbanisme opérationnel</span>
+                        <span class="exp-company">SORBONNE UNIVERSITÉ</span>
+                        <span class="exp-date">Avril 2024</span>
+                    </div>
+                    <ul class="exp-desc">
+                        <li><i class="fas fa-circle"></i> Visite de Reims, analyse des choix fondamentaux et caractéristiques architecturales</li>
+                        <li><i class="fas fa-circle"></i> Benchmarking, faisabilité juridique (PLU), faisabilité financière et programmation</li>
+                        <li><i class="fas fa-circle"></i> Réalisation des dossiers client, investisseur et aménageur</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Atelier d'urbanisme</span>
+                        <span class="exp-company">SORBONNE UNIVERSITÉ</span>
+                        <span class="exp-date">Sept - Déc 2023</span>
+                    </div>
+                    <ul class="exp-desc">
+                        <li><i class="fas fa-circle"></i> Réalisation d'un diagnostic territorial sur un îlot dans le 18e arrondissement de Paris</li>
+                        <li><i class="fas fa-circle"></i> Visite de terrain, analyse sensorielle et historique</li>
+                        <li><i class="fas fa-circle"></i> Analyse morphologique, architecturale et fonctionnelle</li>
+                        <li><i class="fas fa-circle"></i> Synthèse, enjeux de l'îlot et proposition d'aménagement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Formations -->
+            <div class="cv-part">
+                <h3><i class="fas fa-graduation-cap"></i> Formation</h3>
+                
+                <div class="formation-item">
+                    <div>
+                        <span class="formation-diplome">Master Géomatique appliquée aux études urbaines et aux risques</span>
+                        <div class="formation-ecole">CY Cergy Paris Université</div>
+                    </div>
+                    <span class="exp-date">2024 - 2026</span>
+                </div>
+
+                <div class="formation-item">
+                    <div>
+                        <span class="formation-diplome">Licence en Géographie et Aménagement</span>
+                        <div class="formation-ecole">Sorbonne Université</div>
+                    </div>
+                    <span class="exp-date">2023 - 2024</span>
+                </div>
+
+                <div class="formation-item">
+                    <div>
+                        <span class="formation-diplome">Baccalauréat Scientifique</span>
+                        <div class="formation-ecole">Complexe Scolaire La Méthode</div>
+                    </div>
+                    <span class="exp-date">2017 - 2018</span>
+                </div>
+            </div>
+
+            <!-- Langues & compétences supplémentaires -->
+            <div class="cv-part">
+                <h3><i class="fas fa-globe"></i> Langues</h3>
+                <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                    <span><strong>Français :</strong> natif</span>
+                    <span><strong>Anglais :</strong> A2</span>
+                </div>
+            </div>
+
+            <!-- Simulation de gestion de crise (du CV) -->
+            <div class="cv-part">
+                <h3><i class="fas fa-exclamation-triangle"></i> Compétences spécifiques</h3>
+                <div class="tags">
+                    <span class="tag">Simulation de Gestion de Crise</span>
+                    <span class="tag">Capacité rédactionnelle</span>
+                    <span class="tag">Négociation foncière</span>
+                    <span class="tag">Anglais A2</span>
+                    <span class="tag">Travail en équipe</span>
+                </div>
+            </div>
+
+            <a href="documents/CV_Géomaticien_Gloire_Mbamba.pdf" class="btn-cv" download="CV_Gloire_Mbamba.pdf"><i class="fas fa-file-pdf"></i> Télécharger mon CV (PDF)</a>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-label">CONTACT</div>
+        <div class="contact-row">
+            <div class="contact-info">
+                <div class="contact-item"><i class="fas fa-phone"></i> 06 24 61 02 72</div>
+                <div class="contact-item"><i class="fas fa-envelope"></i> gloiremarcellin3@gmail.com</div>
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i> 78500 Sartrouville</div>
+                <div class="contact-item"><i class="fas fa-car"></i> Permis B</div>
+                
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/gloire-mbamba-1988b32a5" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <form class="contact-form" action="https://formsubmit.co/gloiremarcellin3@gmail.com" method="POST">
+                <h3 style="margin-bottom: 1.5rem;">Envoyez-moi un message</h3>
+                <input type="hidden" name="_subject" value="Nouveau message depuis votre portfolio">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="./index.htm#contact">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Votre nom" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Votre email" required>
+                </div>
+                <div class="form-group">
+                    <textarea rows="4" name="message" placeholder="Votre message" required></textarea>
+                </div>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        © 2026 Gloire Mbamba Mouanda · Géomaticien
+    </footer>
+
+    <!-- Script pour le texte défilant -->
+    <script>
+const roles = [
+            "Géomaticien",
+            "Chargé d'études SIG",
+            "Analyste territorial",
+            "Urbaniste data",
+            "Chef de projet géomatique",
+            "Consultant en systèmes d'information géographique"
+        ];
+        
+        let index = 0;
+        const wordElement = document.getElementById('changing-word');
+        
+        function changeWord() {
+            index = (index + 1) % roles.length;
+            wordElement.style.opacity = '0';
+            setTimeout(() => {
+                wordElement.textContent = roles[index];
+                wordElement.style.opacity = '1';
+            }, 200);
+        }
+        
+        setInterval(changeWord, 2000);
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navContainer = document.querySelector('.nav-container');
+        const navLinks = document.querySelectorAll('.nav-container a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navContainer.classList.toggle('open');
+        });
+
+        // Fermer le menu au clic sur un lien
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navContainer.classList.remove('open');
+            });
+        });
+
+        // Menu actif au scroll
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.fontWeight = '400';
+                if (link.getAttribute('href').includes(current)) {
+                    link.style.fontWeight = '600';
+                }
+            });
+        });
+
+        // Modal functions
+        function openModal(projectId) {
+            const modal = document.getElementById(projectId + '-modal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(projectId) {
+            const modal = document.getElementById(projectId + '-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Fermer modal au clic en dehors
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    const projectId = modal.id.replace('-modal', '');
+                    closeModal(projectId);
+                }
+            });
+        });
+
+        // Fermer modal à la touche Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    const projectId = modal.id.replace('-modal', '');
+                    closeModal(projectId);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
