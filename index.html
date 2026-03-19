@@ -721,6 +721,7 @@
             border-radius: 10px;
             font-family: 'Inter', sans-serif;
             background: var(--surface);
+            color: var(--text);
         }
 
         input:focus, textarea:focus {
@@ -843,7 +844,7 @@
                 <div class="accroche">
                     Futur diplômé d'un Master 2 en Géomatique appliquée à l'urbanisme et à la gestion des risques, je transforme les données spatiales en solutions concrètes et innovantes.
                 </div>
-                <p style="color: #404040;">Curieux, rigoureux et créatif, je cherche à rejoindre une équipe stimulante où je pourrai relever de nouveaux défis, apprendre en continu et contribuer efficacement à des projets à fort impact territorial. <strong>Disponible dès septembre 2026.</strong></p>
+                <p style="color: var(--text-soft);">Curieux, rigoureux et créatif, je cherche à rejoindre une équipe stimulante où je pourrai relever de nouveaux défis, apprendre en continu et contribuer efficacement à des projets à fort impact territorial. <strong>Disponible dès septembre 2026.</strong></p>
                 
                 <div class="profil-infos">
                     <div><i class="fas fa-envelope"></i> gloiremarcellin3@gmail.com</div>
@@ -933,55 +934,55 @@
             </div>
 
             <!-- Carte 2 -->
-            <div class="portfolio-card">
-                <div class="portfolio-card-image"></div>
+            <div class="portfolio-card" onclick="openModal('hydre')" style="cursor: pointer;">
+                <div class="portfolio-card-image">🗺️</div>
                 <div class="portfolio-card-content">
-                    <div class="portfolio-card-title"></div>
-                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-title">Application Cartographique SIG</div>
+                    <div class="portfolio-card-desc">Automatisation de traitements SIG et développement d'une application cartographique interne pour HYDRE INGÉNIERIE.</div>
                     <div class="portfolio-card-tags">
                     </div>
                 </div>
             </div>
 
             <!-- Carte 3 -->
-            <div class="portfolio-card">
-                <div class="portfolio-card-image"></div>
+            <div class="portfolio-card" onclick="openModal('caue')" style="cursor: pointer;">
+                <div class="portfolio-card-image">🏙️</div>
                 <div class="portfolio-card-content">
-                    <div class="portfolio-card-title"></div>
-                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-title">Diagnostic Territorial – Houilles</div>
+                    <div class="portfolio-card-desc">Étude de la friche de la gare de Houilles : prospection foncière, relevés terrain et analyse de données pour le CAUE des Yvelines.</div>
                     <div class="portfolio-card-tags">
                     </div>
                 </div>
             </div>
 
             <!-- Carte 4 -->
-            <div class="portfolio-card">
-                <div class="portfolio-card-image"></div>
+            <div class="portfolio-card" onclick="openModal('reims')" style="cursor: pointer;">
+                <div class="portfolio-card-image">🏛️</div>
                 <div class="portfolio-card-content">
-                    <div class="portfolio-card-title"></div>
-                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-title">Urbanisme Opérationnel – Reims</div>
+                    <div class="portfolio-card-desc">Stage d'initiation à l'urbanisme opérationnel : analyse architecturale, faisabilité juridique et financière d'un projet à Reims.</div>
                     <div class="portfolio-card-tags">
                     </div>
                 </div>
             </div>
 
             <!-- Carte 5 -->
-            <div class="portfolio-card">
-                <div class="portfolio-card-image"></div>
+            <div class="portfolio-card" onclick="openModal('paris18')" style="cursor: pointer;">
+                <div class="portfolio-card-image">🔍</div>
                 <div class="portfolio-card-content">
-                    <div class="portfolio-card-title"></div>
-                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-title">Atelier Urbain – Paris 18e</div>
+                    <div class="portfolio-card-desc">Diagnostic territorial d'un îlot du 18e arrondissement de Paris : analyse morphologique, architecturale et proposition d'aménagement.</div>
                     <div class="portfolio-card-tags">
                     </div>
                 </div>
             </div>
 
             <!-- Carte 6 -->
-            <div class="portfolio-card">
-                <div class="portfolio-card-image"></div>
+            <div class="portfolio-card" onclick="openModal('crise')" style="cursor: pointer;">
+                <div class="portfolio-card-image">🚨</div>
                 <div class="portfolio-card-content">
-                    <div class="portfolio-card-title"></div>
-                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-title">Simulation de Gestion de Crise</div>
+                    <div class="portfolio-card-desc">Exercice de simulation de gestion de crise territoriale intégrant SIG, analyse des risques et coordination multi-acteurs.</div>
                     <div class="portfolio-card-tags">
                     </div>
                 </div>
@@ -1033,6 +1034,226 @@
             </div>
 
             <a href="https://climat-quartier.vercel.app/index.html" target="_blank" class="modal-link">Découvrir l'application →</a>
+        </div>
+    </div>
+
+    <!-- Modal HYDRE INGÉNIERIE -->
+    <div id="hydre-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('hydre')">✕</button>
+            
+            <div class="modal-header">
+                <h2>Application Cartographique SIG</h2>
+                <p>Automatisation SIG – Apprentissage chez HYDRE INGÉNIERIE (2024 – en cours)</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>À propos du projet</h3>
+                <p>Dans le cadre de mon alternance chez HYDRE INGÉNIERIE, j'ai développé une application cartographique interne permettant d'automatiser les traitements SIG utilisés quotidiennement par l'équipe. Cet outil rationalise les études d'implantation télécom et les analyses de faisabilité urbaine.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Missions réalisées</h3>
+                <ul>
+                    <li>Automatisation de traitements SIG récurrents (scripts Python/QGIS)</li>
+                    <li>Études d'implantation télécom : antennes, fibre optique, datacenters</li>
+                    <li>Conduite d'études de faisabilité urbaine et analyse des contraintes de site</li>
+                    <li>Prospection foncière et analyse SIG appliquée aux télécoms</li>
+                    <li>Collaboration avec les équipes commerciales pour la restitution des résultats</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Technologies utilisées</h3>
+                <div class="modal-tags">
+                    <span class="modal-tag">QGIS</span>
+                    <span class="modal-tag">Python</span>
+                    <span class="modal-tag">SIG</span>
+                    <span class="modal-tag">Géomatique</span>
+                    <span class="modal-tag">Télécoms</span>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>Mon rôle</h3>
+                <p>Apprenti Géomaticien – conception, développement et déploiement de l'application cartographique interne, et participation aux études terrain.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal CAUE des Yvelines -->
+    <div id="caue-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('caue')">✕</button>
+            
+            <div class="modal-header">
+                <h2>Diagnostic Territorial – Houilles</h2>
+                <p>Prospection foncière – CAUE des Yvelines (Octobre 2024)</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>À propos du projet</h3>
+                <p>Mission de diagnostic territorial commandée par le CAUE des Yvelines, centrée sur la friche de la gare de Houilles. L'objectif était d'identifier de nouvelles opportunités foncières pour le développement de projets immobiliers et d'analyser le potentiel de reconversion du site.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Missions réalisées</h3>
+                <ul>
+                    <li>Recherche de nouvelles opportunités foncières sur la friche de la gare de Houilles</li>
+                    <li>Relevés terrain : photographies, croquis, enregistrements sonores, comptages, mesures</li>
+                    <li>Entretiens avec les parties prenantes, habitants et commerçants</li>
+                    <li>Croisement des données avec sources INSEE, Institut Paris Région et revue de presse</li>
+                    <li>Rédaction du rapport de diagnostic et formulation de recommandations</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Méthodes et outils</h3>
+                <div class="modal-tags">
+                    <span class="modal-tag">SIG</span>
+                    <span class="modal-tag">INSEE</span>
+                    <span class="modal-tag">Diagnostic urbain</span>
+                    <span class="modal-tag">Enquête terrain</span>
+                    <span class="modal-tag">Foncier</span>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>Mon rôle</h3>
+                <p>Chargé du diagnostic territorial complet : collecte des données sur le terrain, analyse croisée des sources et rédaction des recommandations stratégiques.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Urbanisme Opérationnel Reims -->
+    <div id="reims-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('reims')">✕</button>
+            
+            <div class="modal-header">
+                <h2>Urbanisme Opérationnel – Reims</h2>
+                <p>Stage d'initiation – Sorbonne Université (Avril 2024)</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>À propos du projet</h3>
+                <p>Stage de terrain à Reims dans le cadre d'un cours d'initiation à l'urbanisme opérationnel à la Sorbonne. L'objectif était d'analyser un projet d'aménagement existant, d'en comprendre les mécanismes juridiques et financiers, et de produire des dossiers professionnels.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Missions réalisées</h3>
+                <ul>
+                    <li>Visite de Reims et analyse des choix fondamentaux et caractéristiques architecturales</li>
+                    <li>Benchmarking d'opérations d'aménagement comparables</li>
+                    <li>Étude de faisabilité juridique (PLU) et financière</li>
+                    <li>Programmation urbaine et définition du mix fonctionnel</li>
+                    <li>Rédaction des dossiers client, investisseur et aménageur</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Compétences mobilisées</h3>
+                <div class="modal-tags">
+                    <span class="modal-tag">PLU</span>
+                    <span class="modal-tag">Faisabilité financière</span>
+                    <span class="modal-tag">Urbanisme opérationnel</span>
+                    <span class="modal-tag">Benchmarking</span>
+                    <span class="modal-tag">Programmation urbaine</span>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>Mon rôle</h3>
+                <p>Analyse terrain et production de dossiers opérationnels : évaluation de la faisabilité juridique et financière, et élaboration d'une proposition de programmation urbaine.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Atelier Urbain Paris 18e -->
+    <div id="paris18-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('paris18')">✕</button>
+            
+            <div class="modal-header">
+                <h2>Atelier Urbain – Paris 18e</h2>
+                <p>Diagnostic territorial – Sorbonne Université (Sept – Déc 2023)</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>À propos du projet</h3>
+                <p>Atelier d'urbanisme à la Sorbonne portant sur un îlot du 18e arrondissement de Paris. Le projet consistait à réaliser un diagnostic territorial complet incluant une analyse morphologique, architecturale et fonctionnelle, aboutissant à une proposition d'aménagement argumentée.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Missions réalisées</h3>
+                <ul>
+                    <li>Visite de terrain et analyse sensorielle et historique de l'îlot</li>
+                    <li>Analyse morphologique et architecturale du bâti</li>
+                    <li>Analyse fonctionnelle des usages et des flux</li>
+                    <li>Synthèse des enjeux de l'îlot</li>
+                    <li>Élaboration d'une proposition d'aménagement</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Méthodes et outils</h3>
+                <div class="modal-tags">
+                    <span class="modal-tag">Diagnostic urbain</span>
+                    <span class="modal-tag">Cartographie</span>
+                    <span class="modal-tag">Analyse morphologique</span>
+                    <span class="modal-tag">Enquête terrain</span>
+                    <span class="modal-tag">Aménagement</span>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>Mon rôle</h3>
+                <p>Participation complète à l'atelier : diagnostic, analyse et proposition d'aménagement pour l'îlot étudié dans le 18e arrondissement de Paris.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Simulation de Gestion de Crise -->
+    <div id="crise-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('crise')">✕</button>
+            
+            <div class="modal-header">
+                <h2>Simulation de Gestion de Crise</h2>
+                <p>Exercice de simulation – Gestion des risques territoriaux</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>À propos du projet</h3>
+                <p>Exercice de simulation de gestion de crise territoriale réalisé dans le cadre du Master Géomatique appliquée à l'urbanisme et à la gestion des risques. L'exercice consistait à mobiliser les outils SIG pour analyser, cartographier et coordonner une réponse à un scénario de crise.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Compétences mobilisées</h3>
+                <ul>
+                    <li>Analyse et cartographie des risques avec les outils SIG</li>
+                    <li>Coordination multi-acteurs et communication de crise</li>
+                    <li>Prise de décision sous contrainte temporelle</li>
+                    <li>Rédaction de plans d'action et de comptes-rendus de crise</li>
+                    <li>Utilisation de données spatiales en temps réel</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Outils et méthodes</h3>
+                <div class="modal-tags">
+                    <span class="modal-tag">SIG</span>
+                    <span class="modal-tag">Gestion des risques</span>
+                    <span class="modal-tag">Cartographie</span>
+                    <span class="modal-tag">Coordination</span>
+                    <span class="modal-tag">Analyse spatiale</span>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>Mon rôle</h3>
+                <p>Participant actif à la simulation : analyse des risques, cartographie des zones d'intervention et contribution à la coordination des réponses d'urgence.</p>
+            </div>
         </div>
     </div>
 
@@ -1175,7 +1396,7 @@
                 <h3 style="margin-bottom: 1.5rem;">Envoyez-moi un message</h3>
                 <input type="hidden" name="_subject" value="Nouveau message depuis votre portfolio">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="./index.htm#contact">
+                <input type="hidden" name="_next" value="./index.html#contact">
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Votre nom" required>
                 </div>
