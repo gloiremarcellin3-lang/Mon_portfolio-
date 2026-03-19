@@ -721,6 +721,7 @@
             border-radius: 10px;
             font-family: 'Inter', sans-serif;
             background: var(--surface);
+            color: var(--text);
         }
 
         input:focus, textarea:focus {
@@ -843,7 +844,7 @@
                 <div class="accroche">
                     Futur diplômé d'un Master 2 en Géomatique appliquée à l'urbanisme et à la gestion des risques, je transforme les données spatiales en solutions concrètes et innovantes.
                 </div>
-                <p style="color: #404040;">Curieux, rigoureux et créatif, je cherche à rejoindre une équipe stimulante où je pourrai relever de nouveaux défis, apprendre en continu et contribuer efficacement à des projets à fort impact territorial. <strong>Disponible dès septembre 2026.</strong></p>
+                <p style="color: var(--text-soft);">Curieux, rigoureux et créatif, je cherche à rejoindre une équipe stimulante où je pourrai relever de nouveaux défis, apprendre en continu et contribuer efficacement à des projets à fort impact territorial. <strong>Disponible dès septembre 2026.</strong></p>
                 
                 <div class="profil-infos">
                     <div><i class="fas fa-envelope"></i> gloiremarcellin3@gmail.com</div>
@@ -932,56 +933,68 @@
                 </div>
             </div>
 
-            <!-- Carte 2 -->
-            <div class="portfolio-card">
-                <div class="portfolio-card-image"></div>
+            <!-- Carte 2 : Application cartographique HYDRE -->
+            <div class="portfolio-card" onclick="openModal('hydre')" style="cursor: pointer;">
+                <div class="portfolio-card-image">🗺️</div>
                 <div class="portfolio-card-content">
-                    <div class="portfolio-card-title"></div>
-                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-title">Application cartographique télécom</div>
+                    <div class="portfolio-card-desc">Application cartographique interne développée chez HYDRE INGÉNIERIE pour les études d'implantation télécom (antennes, fibre, datacenters).</div>
                     <div class="portfolio-card-tags">
+                        <span class="portfolio-tag">ArcGIS</span>
+                        <span class="portfolio-tag">Python</span>
+                        <span class="portfolio-tag">SIG</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Carte 3 -->
-            <div class="portfolio-card">
-                <div class="portfolio-card-image"></div>
+            <!-- Carte 3 : Diagnostic territorial Houilles -->
+            <div class="portfolio-card" onclick="openModal('houilles')" style="cursor: pointer;">
+                <div class="portfolio-card-image">🏙️</div>
                 <div class="portfolio-card-content">
-                    <div class="portfolio-card-title"></div>
-                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-title">Diagnostic territorial – Gare de Houilles</div>
+                    <div class="portfolio-card-desc">Étude foncière et diagnostic territorial sur la friche de la gare de Houilles pour le CAUE des Yvelines, incluant enquêtes terrain et analyse de données.</div>
                     <div class="portfolio-card-tags">
+                        <span class="portfolio-tag">QGIS</span>
+                        <span class="portfolio-tag">INSEE</span>
+                        <span class="portfolio-tag">Foncier</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Carte 4 -->
-            <div class="portfolio-card">
-                <div class="portfolio-card-image"></div>
+            <!-- Carte 4 : Diagnostic îlot Paris 18e -->
+            <div class="portfolio-card" onclick="openModal('paris18')" style="cursor: pointer;">
+                <div class="portfolio-card-image">🏛️</div>
                 <div class="portfolio-card-content">
-                    <div class="portfolio-card-title"></div>
-                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-title">Diagnostic d'îlot – Paris 18e</div>
+                    <div class="portfolio-card-desc">Diagnostic territorial complet d'un îlot dans le 18e arrondissement de Paris : analyse morphologique, architecturale, fonctionnelle et proposition d'aménagement.</div>
                     <div class="portfolio-card-tags">
+                        <span class="portfolio-tag">Urbanisme</span>
+                        <span class="portfolio-tag">SIG</span>
+                        <span class="portfolio-tag">Cartographie</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Carte 5 -->
-            <div class="portfolio-card">
-                <div class="portfolio-card-image"></div>
+            <!-- Carte 5 : Faisabilité urbaine Reims -->
+            <div class="portfolio-card" onclick="openModal('reims')" style="cursor: pointer;">
+                <div class="portfolio-card-image">🏗️</div>
                 <div class="portfolio-card-content">
-                    <div class="portfolio-card-title"></div>
-                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-title">Étude de faisabilité – Reims</div>
+                    <div class="portfolio-card-desc">Étude d'urbanisme opérationnel sur Reims : analyse architecturale, benchmarking, faisabilité juridique (PLU), faisabilité financière et dossiers client/investisseur.</div>
                     <div class="portfolio-card-tags">
+                        <span class="portfolio-tag">PLU</span>
+                        <span class="portfolio-tag">Faisabilité</span>
+                        <span class="portfolio-tag">Urbanisme</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Carte 6 -->
+            <!-- Carte 6 : En cours -->
             <div class="portfolio-card">
-                <div class="portfolio-card-image"></div>
+                <div class="portfolio-card-image" style="background: linear-gradient(135deg, #1e3a5f, #2a4a70); font-size: 2rem;">🚧</div>
                 <div class="portfolio-card-content">
-                    <div class="portfolio-card-title"></div>
-                    <div class="portfolio-card-desc"></div>
+                    <div class="portfolio-card-title" style="color: var(--muted);">Projet en cours…</div>
+                    <div class="portfolio-card-desc">Nouveau projet géomatique en cours de réalisation. Disponible prochainement.</div>
                     <div class="portfolio-card-tags">
                     </div>
                 </div>
@@ -1033,6 +1046,139 @@
             </div>
 
             <a href="https://climat-quartier.vercel.app/index.html" target="_blank" class="modal-link">Découvrir l'application →</a>
+        </div>
+    </div>
+
+    <!-- Modal Application cartographique HYDRE -->
+    <div id="hydre-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('hydre')">✕</button>
+            <div class="modal-header">
+                <h2>Application cartographique télécom</h2>
+                <p>Automatisation SIG & cartographie interne – HYDRE INGÉNIERIE (2024 – en cours)</p>
+            </div>
+            <div class="modal-section">
+                <h3>À propos du projet</h3>
+                <p>Dans le cadre de mon apprentissage chez HYDRE INGÉNIERIE, j'ai participé au développement d'une application cartographique interne dédiée aux études d'implantation télécom (antennes, fibre optique, datacenters).</p>
+            </div>
+            <div class="modal-section">
+                <h3>Missions principales</h3>
+                <ul>
+                    <li>Automatisation de traitements SIG répétitifs via scripts Python</li>
+                    <li>Études d'implantation pour des projets télécom (antennes 5G, fibre, datacenters)</li>
+                    <li>Conduite d'études de faisabilité urbaine et analyse des contraintes de site</li>
+                    <li>Prospection foncière assistée par SIG</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Technologies utilisées</h3>
+                <div class="modal-tags">
+                    <span class="modal-tag">ArcGIS</span>
+                    <span class="modal-tag">QGIS</span>
+                    <span class="modal-tag">Python</span>
+                    <span class="modal-tag">PostgreSQL</span>
+                    <span class="modal-tag">FME</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Diagnostic territorial Houilles -->
+    <div id="houilles-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('houilles')">✕</button>
+            <div class="modal-header">
+                <h2>Diagnostic territorial – Gare de Houilles</h2>
+                <p>Étude foncière – CAUE des Yvelines (Octobre 2024)</p>
+            </div>
+            <div class="modal-section">
+                <h3>À propos du projet</h3>
+                <p>Mission de diagnostic territorial sur la friche de la gare de Houilles, visant à identifier de nouvelles opportunités foncières pour le développement de projets immobiliers.</p>
+            </div>
+            <div class="modal-section">
+                <h3>Missions principales</h3>
+                <ul>
+                    <li>Recherche d'opportunités foncières (friche gare de Houilles)</li>
+                    <li>Relevés terrain : photographies, croquis, enregistrements sonores, comptages</li>
+                    <li>Contact avec parties prenantes, habitants et commerçants</li>
+                    <li>Croisement des données avec INSEE, Institut Paris Région, revue de presse</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Technologies utilisées</h3>
+                <div class="modal-tags">
+                    <span class="modal-tag">QGIS</span>
+                    <span class="modal-tag">INSEE</span>
+                    <span class="modal-tag">Cartographie</span>
+                    <span class="modal-tag">Analyse territoriale</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Diagnostic îlot Paris 18e -->
+    <div id="paris18-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('paris18')">✕</button>
+            <div class="modal-header">
+                <h2>Diagnostic d'îlot – Paris 18e</h2>
+                <p>Atelier d'urbanisme – Sorbonne Université (Sept – Déc 2023)</p>
+            </div>
+            <div class="modal-section">
+                <h3>À propos du projet</h3>
+                <p>Diagnostic territorial complet d'un îlot dans le 18e arrondissement de Paris, combinant analyse de terrain et production cartographique pour proposer un scénario d'aménagement.</p>
+            </div>
+            <div class="modal-section">
+                <h3>Missions principales</h3>
+                <ul>
+                    <li>Visite de terrain, analyse sensorielle et historique</li>
+                    <li>Analyse morphologique, architecturale et fonctionnelle de l'îlot</li>
+                    <li>Identification des enjeux et synthèse territoriale</li>
+                    <li>Proposition d'aménagement argumentée</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Technologies utilisées</h3>
+                <div class="modal-tags">
+                    <span class="modal-tag">QGIS</span>
+                    <span class="modal-tag">SketchUp</span>
+                    <span class="modal-tag">Cartographie</span>
+                    <span class="modal-tag">Inkscape</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Faisabilité urbaine Reims -->
+    <div id="reims-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('reims')">✕</button>
+            <div class="modal-header">
+                <h2>Étude de faisabilité – Reims</h2>
+                <p>Stage d'initiation à l'urbanisme opérationnel – Sorbonne Université (Avril 2024)</p>
+            </div>
+            <div class="modal-section">
+                <h3>À propos du projet</h3>
+                <p>Étude d'urbanisme opérationnel menée sur la ville de Reims, portant sur l'analyse des choix architecturaux, la faisabilité réglementaire et financière, et la production de dossiers multi-acteurs.</p>
+            </div>
+            <div class="modal-section">
+                <h3>Missions principales</h3>
+                <ul>
+                    <li>Visite de Reims et analyse architecturale approfondie</li>
+                    <li>Benchmarking et faisabilité juridique (PLU)</li>
+                    <li>Faisabilité financière et programmation</li>
+                    <li>Réalisation des dossiers client, investisseur et aménageur</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Technologies utilisées</h3>
+                <div class="modal-tags">
+                    <span class="modal-tag">PLU</span>
+                    <span class="modal-tag">Revit</span>
+                    <span class="modal-tag">Pack Office</span>
+                    <span class="modal-tag">Cartographie</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1175,7 +1321,7 @@
                 <h3 style="margin-bottom: 1.5rem;">Envoyez-moi un message</h3>
                 <input type="hidden" name="_subject" value="Nouveau message depuis votre portfolio">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="./index.htm#contact">
+                <input type="hidden" name="_next" value="./index.html#contact">
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Votre nom" required>
                 </div>
